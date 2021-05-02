@@ -44,8 +44,8 @@ class ArmyList extends Component{
             .catch((err) => {console.log(err)})
     }
 
-    editItem = (id, name) => {
-        axios.put(`/api/army/${id}`, {name})
+    editItem = (id, name, cost, powerLevel) => {
+        axios.put(`/api/army/${id}`, {name, cost, powerLevel})
             .then((res) => {
                 this.setState({
                     armyArray: res.data
@@ -58,20 +58,23 @@ class ArmyList extends Component{
         
         return(
             
-            <div style={{backgroundColor:'lightgray', width:'95vw', display:'flex', flexDirection:'column', marginLeft:'2.5vw', marginBottom:'2.5vw',
+            <div style={{width:'95vw', height:'fit-content', display:'flex', flexDirection:'column', 
+                marginLeft:'2.5vw', marginBottom:'2.5vw', borderStyle:'solid', borderColor:'yellow', borderWidth:'.25vw'
              }}>
                 <AddItem 
                 addItem = {this.addItem}
-                />
-                <h1>Resource List</h1>
+                />  
+                <br></br>
+                <h1 style={{color:'yellow'}}>Resource List</h1>
+                <br></br>
                 <div style={{
                 display:'flex', flexDirection:'row', justifyContent:'space-evenly',
-                marginLeft:'2.5vw', marginRight:'2.5vw', 
+                paddingLeft:'2vw', paddingRight:'2vw', flexWrap:'wrap', gap:'2.5vw'
                 }}>   
                 {this.state.armyArray.map((item) => {
                     return(
                         <div style={{
-                            width:'15vw'
+                            width:'17vw'
                             }}>
                             <ManageItem
                                 item={item}
@@ -84,7 +87,10 @@ class ArmyList extends Component{
                 </div>
                 <br></br>
                 <br></br>
-                <GetCost />
+                <br></br>
+                <div>
+                    <GetCost />
+                </div>
             </div>
             
         )

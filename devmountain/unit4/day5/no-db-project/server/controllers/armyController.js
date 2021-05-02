@@ -51,7 +51,7 @@ module.exports = {
 
     editItem: (req, res) => {
         let {id} = req.params
-        let {name, powerLevel} = req.body
+        let {name, powerLevel, cost} = req.body
         const index = army.findIndex((e) => {
             return e.id === +id
         })
@@ -59,7 +59,8 @@ module.exports = {
         army.splice(index,1, {
             id: army[index].id,
             name, 
-            powerLevel: army[index].name,
+            powerLevel,
+            cost,
             image: army[index].image
         })
 

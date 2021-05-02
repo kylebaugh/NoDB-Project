@@ -17,18 +17,20 @@ class GetCost extends Component{
 
     render(){
         return this.state.editMode ? (
-            <div>
+            <div style={{marginBottom:'5vh', color:'yellow'}}>
                 <h1>Cost: The lives of all the Jedi</h1>
                 <h1>Power: UNLIMITED</h1>
                 <img 
-                src={'https://i.ytimg.com/vi/Sg14jNbBb-8/maxresdefault.jpg'}
+                src={'https://forum.predator.illfonic.com/uploads/default/original/2X/1/1d7b2801394efce541a2934a909138c83aabfeec.gif'}
                 alt={'Palpatine the Boss'}
                 style={{width:'25vw'}}
-                ></img><br></br>
+                ></img>
+                <br></br>
+                <br></br>
                 <button onClick={this.toggleEdit}>Reset</button>
             </div>
         ):(
-            <div>
+            <div style={{marginBottom:'5vh'}}>
                 <button onClick={this.toggleEdit}>Calculate Cost and Power</button>
             </div>
         )

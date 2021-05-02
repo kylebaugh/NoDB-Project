@@ -5,28 +5,34 @@ class ManageItem extends Component{
         super()
         this.state = {
             editMode: false,
-                newName:''
+                newName:'',
+                newCost:'',
+                newPowerLevel:''
         }
     }
 
     handleNewName = (e) => {this.setState({newName: e})}
+    handleNewCost = (e) => {this.setState({newCost: e})}
+    handleNewPowerLevel = (e) => {this.setState({newPowerLevel: e})}
 
     toggleEdit = () => {
         this.setState({
             editMode: !this.state.editMode,
-            newName: ''
+            newName: '',
+            // newCost:'',
+            // newPowerLevel:''
         })
     }
 
-
-
     handleSave = () => {
-        this.props.editItem(this.props.item.id, this.state.newName)
+        this.props.editItem(this.props.item.id, this.state.newName, this.state.newPowerLevel, this.state.newCost)
+        // this.props.editItem(this.props.item.id, this.state.newCost)
+        // this.props.editItem(this.props.item.id, this.state.newPowerLevel)
         this.toggleEdit()
         console.log(this.props.item.newName)
     }
 
-
+    
     render(){
         return this.state.editMode ? (
                 <div>Edit Mode
@@ -36,6 +42,19 @@ class ManageItem extends Component{
                         placeholder={'Change Name'}
                         >
                     </input>
+                    <input
+                        value={this.state.newCost}
+                        onChange={(e) => this.handleNewCost(e.target.value)}
+                        placeholder={'Change Cost'}
+                        >
+                    </input>
+                    <input
+                        value={this.state.newPowerLevel}
+                        onChange={(e) => this.handleNewPowerLevel(e.target.value)}
+                        placeholder={'Change Power Level'}
+                        >
+                    </input>
+                    <br></br>
                     <button
                         onClick={this.handleSave}
                         >Save
@@ -44,15 +63,24 @@ class ManageItem extends Component{
             ):
             (
         <div>
-            <section style={{display:'flex', flexDirection:'column', backgroundColor:'lightpink'}}>
-                    <section style={{display:'flex', flexDirection:'column'}}>
-                            <p>{this.props.item.name}</p>
-                            <p>Power Level: {this.props.item.powerLevel}</p>
-                            <img 
-                            src={this.props.item.image}
-                            alt={this.props.item.name}
-                            style={{width:'15vw'}}
-                            ></img>
+            <section style={{display:'flex', flexDirection:'column', backgroundColor:'#3a3a3a', 
+                        paddingBottom:'2vh', borderStyle:'solid', borderColor:'blue'}}>
+                    <section style={{display:'flex', flexDirection:'column', lineHeight:'20px', color:'white'}}>
+                            <p>
+                                Name: {this.props.item.name}
+                                    <br></br>
+                                Cost: {this.props.item.cost}
+                                    <br></br>
+                                Power Level: {this.props.item.powerLevel}
+                                    <br></br>
+                                    <br></br>
+                                <img 
+                                    src={this.props.item.image}
+                                    alt={this.props.item.name}
+                                    style={{width:'15vw'}}
+                                ></img>
+                            </p>
+
 
                     </section>
                     <section>
