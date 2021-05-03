@@ -44,8 +44,8 @@ class ArmyList extends Component{
             .catch((err) => {console.log(err)})
     }
 
-    editItem = (id, name, cost, powerLevel) => {
-        axios.put(`/api/army/${id}`, {name, cost, powerLevel})
+    editItem = (id, name, cost, powerLevel, upgradeCount) => {
+        axios.put(`/api/army/${id}`, {name, cost, powerLevel, upgradeCount})
             .then((res) => {
                 this.setState({
                     armyArray: res.data

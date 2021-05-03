@@ -9,10 +9,11 @@ class GetCost extends Component{
         }
     }
 
-    toggleEdit= () => {
+    toggleEdit = () => {
         this.setState({
             editMode: !this.state.editMode
         })
+        window.scrollBy(0,10000)
     }
 
     render(){
@@ -26,12 +27,12 @@ class GetCost extends Component{
                 style={{width:'25vw'}}
                 ></img>
                 <br></br>
-                <br></br>
-                <button onClick={this.toggleEdit}>Reset</button>
+                <button onClick={this.toggleEdit}>Close</button>
             </div>
         ):(
             <div style={{marginBottom:'5vh'}}>
-                <button onClick={this.toggleEdit}>Calculate Cost and Power</button>
+                <button onClick={this.toggleEdit}>
+                    Calculate Cost and Power</button>
             </div>
         )
     }

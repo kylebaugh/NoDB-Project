@@ -7,9 +7,11 @@ class ManageItem extends Component{
             editMode: false,
                 newName:'',
                 newCost:'',
-                newPowerLevel:''
+                newPowerLevel:'',
         }
     }
+
+
 
     handleNewName = (e) => {this.setState({newName: e})}
     handleNewCost = (e) => {this.setState({newCost: e})}
@@ -19,18 +21,43 @@ class ManageItem extends Component{
         this.setState({
             editMode: !this.state.editMode,
             newName: '',
-            // newCost:'',
-            // newPowerLevel:''
+            newCost:'',
+            newPowerLevel:''
         })
     }
 
     handleSave = () => {
-        this.props.editItem(this.props.item.id, this.state.newName, this.state.newPowerLevel, this.state.newCost)
-        // this.props.editItem(this.props.item.id, this.state.newCost)
-        // this.props.editItem(this.props.item.id, this.state.newPowerLevel)
+        this.props.editItem(this.props.item.id, this.state.newName, this.state.newCost, this.state.newPowerLevel)
+
         this.toggleEdit()
         console.log(this.props.item.newName)
     }
+
+
+
+    handleUpgrade = () => {
+
+        let cost = Math.floor(this.props.item.cost + (this.props.item.cost * .15))
+        let powerLevel = Math.floor(this.props.item.powerLevel + (this.props.item.powerLevel * .1))
+        // let upgradeCount = this.props.item.upgradeCount + 1
+        this.props.editItem(this.props.item.id, this.props.item.name, cost, powerLevel, this.props.item.upgradeCount + 1)
+        console.log(this.props.item.upgradeCount)
+        
+    }
+
+    handleDowngrade = () => {
+        let cost = Math.floor(this.props.item.cost - (this.props.item.cost * .15))
+        let powerLevel = Math.floor(this.props.item.powerLevel - (this.props.item.powerLevel * .1))
+
+        console.log(this.props.item.upgradeCount)
+
+        
+        // if(this.props.item.upgradeCount < 0)
+            
+        this.props.editItem(this.props.item.id, this.props.item.name, cost, powerLevel, this.props.item.upgradeCount)
+
+    }
+
 
     
     render(){
@@ -69,7 +96,7 @@ class ManageItem extends Component{
                             <p>
                                 Name: {this.props.item.name}
                                     <br></br>
-                                Cost: {this.props.item.cost}
+                                Cost: {this.props.item.cost}₹
                                     <br></br>
                                 Power Level: {this.props.item.powerLevel}
                                     <br></br>
@@ -79,6 +106,15 @@ class ManageItem extends Component{
                                     alt={this.props.item.name}
                                     style={{width:'15vw'}}
                                 ></img>
+                                <p>Upgrades</p>
+                                <button 
+                                     onClick={() => this.handleUpgrade()}
+                                    >Upgrade
+                                </button>
+                                <button 
+                                     onClick={() => this.handleDowngrade()}
+                                    >Downgrade
+                                </button>
                             </p>
 
 
