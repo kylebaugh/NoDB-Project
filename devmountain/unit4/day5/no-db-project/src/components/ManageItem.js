@@ -29,32 +29,23 @@ class ManageItem extends Component{
     handleSave = () => {
         this.props.editItem(this.props.item.id, this.state.newName, this.state.newCost, this.state.newPowerLevel)
 
-        this.toggleEdit()
-        console.log(this.props.item.newName)
-    }
+        this.toggleEdit()}
 
 
 
     handleUpgrade = () => {
+        let cost = Math.floor(this.props.item.cost + (+this.props.item.baseCost * .15))
+        let powerLevel = Math.floor(this.props.item.powerLevel + (+this.props.item.basePowerLevel * .1))
 
-        let cost = Math.floor(this.props.item.cost + (this.props.item.cost * .15))
-        let powerLevel = Math.floor(this.props.item.powerLevel + (this.props.item.powerLevel * .1))
-        // let upgradeCount = this.props.item.upgradeCount + 1
         this.props.editItem(this.props.item.id, this.props.item.name, cost, powerLevel, this.props.item.upgradeCount + 1)
-        console.log(this.props.item.upgradeCount)
         
     }
 
     handleDowngrade = () => {
-        let cost = Math.floor(this.props.item.cost - (this.props.item.cost * .15))
-        let powerLevel = Math.floor(this.props.item.powerLevel - (this.props.item.powerLevel * .1))
-
-        console.log(this.props.item.upgradeCount)
-
-        
-        // if(this.props.item.upgradeCount < 0)
+        let cost = Math.floor(this.props.item.cost - (+this.props.item.baseCost * .15))
+        let powerLevel = Math.floor(this.props.item.powerLevel - (+this.props.item.basePowerLevel * .1))
             
-        this.props.editItem(this.props.item.id, this.props.item.name, cost, powerLevel, this.props.item.upgradeCount)
+        this.props.editItem(this.props.item.id, this.props.item.name, cost, powerLevel, this.props.item.upgradeCount -1 )
 
     }
 
@@ -69,18 +60,21 @@ class ManageItem extends Component{
                         placeholder={'Change Name'}
                         >
                     </input>
+                   
                     <input
                         value={this.state.newCost}
                         onChange={(e) => this.handleNewCost(e.target.value)}
                         placeholder={'Change Cost'}
                         >
                     </input>
+
                     <input
                         value={this.state.newPowerLevel}
                         onChange={(e) => this.handleNewPowerLevel(e.target.value)}
                         placeholder={'Change Power Level'}
                         >
                     </input>
+
                     <br></br>
                     <button
                         onClick={this.handleSave}

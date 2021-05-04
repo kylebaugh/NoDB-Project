@@ -14,7 +14,7 @@ class ArmyList extends Component{
     }
 
     componentDidMount(){
-        axios.get("/api/army")
+        axios.get('/api/army')
             .then((res) => {
                 this.setState({
                     armyArray: res.data
@@ -22,16 +22,20 @@ class ArmyList extends Component{
                     console.log(this.state.armyArray)
                 })
             .catch((err) => {console.log(err)})
+
     }
 
+
     addItem = (name, powerLevel, cost, image) => {
-        axios.post("/api/army", {name, powerLevel, cost, image})
+        axios.post('/api/army', {name, powerLevel, cost, image})
             .then((res) => {
                 this.setState({
                     armyArray: res.data
                 })
             })
             .catch((err) => {console.log(err)})
+            console.log(this.state.armyArray)
+
     }
 
     deleteItem = (id) => {
@@ -62,8 +66,10 @@ class ArmyList extends Component{
                 marginLeft:'2.5vw', marginBottom:'2.5vw', borderStyle:'solid', borderColor:'yellow', borderWidth:'.25vw'
              }}>
                 <AddItem 
+                armyArray = {this.state.armyArray}
                 addItem = {this.addItem}
                 />  
+
                 <br></br>
                 <h1 style={{color:'yellow'}}>Resource List</h1>
                 <br></br>

@@ -12,13 +12,14 @@ class AddItem extends Component{
     }
 
     handleAdd = () => {
-        this.props.addItem(this.state.name, this.state.powerLevel, this.state.cost, this.state.image)
+        this.props.addItem(this.state.name, +this.state.powerLevel, +this.state.cost, this.state.image)
         this.setState({
             name:'',
             powerLevel:'',
             cost:'',
             image:''
         })
+        console.log(this.props.armyArray)
     }
 
     handleName = (e) => {
@@ -60,19 +61,21 @@ class AddItem extends Component{
                         >
                     </input>
 
-                    <input
-                        value={this.state.powerLevel}
-                        onChange={(e) => this.handlePowerLevel(e.target.value)}   
-                        placeholder={'Enter Power Level'}
-
-                        >
-                    </input>
+                    
 
                     <input
                     value={this.state.cost}
                     onChange={(e) => this.handleCost(e.target.value)}
                     placeholder={'Enter Cost'}
                     >
+                    </input>
+
+                    <input
+                        value={this.state.powerLevel}
+                        onChange={(e) => this.handlePowerLevel(e.target.value)}   
+                        placeholder={'Enter Power Level'}
+
+                        >
                     </input>
                     
                     <input
